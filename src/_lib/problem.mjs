@@ -24,7 +24,7 @@ class Problem {
   }
 
   #getLinesAsInts() {
-    return this.#lines.map((line) => parseInt(line))
+    return this.#lines.map((line) => Number(line))
   }
 }
 
