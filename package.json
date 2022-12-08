@@ -5,10 +5,10 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "node --experimental-vm-modules ./node_modules/.bin/jest",
+    "test": "node ./node_modules/.bin/jest",
     "test:coverage": "npm test -- --coverage",
     "test:watch": "npm test -- --watch",
-    "new:day": "node --experimental-vm-modules ./src/_lib/new-day.js"
+    "new:day": "node ./src/_lib/new-day.js"
   },
   "repository": {
     "type": "git",
