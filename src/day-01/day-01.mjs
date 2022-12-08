@@ -6,24 +6,7 @@ class Day01 extends Problem {
   }
 
   solvePart1() {
-    let currentElfIndex = 0
-
-    this.linesAsInts
-
-    const elves = [0]
-    for (let i = 0; i < this.linesAsInts.length; i++) {
-      const currentValue = this.linesAsInts[i]
-
-      if (currentValue === 0) {
-        currentElfIndex++
-        elves.push(0)
-      }
-      else {
-        elves[currentElfIndex] += currentValue
-      }
-    }
-
-    const maxValue = Math.max(...elves)
+    const maxValue = Math.max(...this.#elfCalories)
 
     return maxValue
 
@@ -45,6 +28,27 @@ class Day01 extends Problem {
 
   solvePart2() {
     return parseInt(this.solvePart1())
+  }
+
+  get #elfCalories() {
+    let currentElfIndex = 0
+
+    this.linesAsInts
+
+    const elves = [0]
+    for (let i = 0; i < this.linesAsInts.length; i++) {
+      const currentValue = this.linesAsInts[i]
+
+      if (currentValue === 0) {
+        currentElfIndex++
+        elves.push(0)
+      }
+      else {
+        elves[currentElfIndex] += currentValue
+      }
+    }
+
+    return elves
   }
 }
 
