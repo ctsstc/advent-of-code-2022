@@ -27,7 +27,10 @@ class Day01 extends Problem {
   }
 
   solvePart2() {
-    return parseInt(this.solvePart1())
+    const elves = [...this.#elfCalories]
+    elves.sort((a, b) => b - a)
+
+    return elves.slice(0, 3).reduce((sum, currentValue) => sum + currentValue, 0)
   }
 
   get #elfCalories() {
