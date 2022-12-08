@@ -3,7 +3,7 @@ import 'zx/globals'
 const day = await question('What day number would you like to create? ')
 const baseDirectory = './src/day-00'
 const newDirectory = './src/day-' + day
-const extension = 'js'
+const extension = 'mjs'
 
 await $`cp -r ${baseDirectory} ${newDirectory}`
 

@@ -1,4 +1,4 @@
-import Problem from '../day-00/day-00.js'
+import Problem from './day-00.mjs'
 import { fileURLToPath } from 'url'
 import { dirname } from 'path'
 

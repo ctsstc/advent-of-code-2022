@@ -2,13 +2,13 @@
   "name": "advent-of-code-2021",
   "version": "1.0.0",
   "description": "https://adventofcode.com/2021",
-  "main": "index.js",
+  "main": "index.mjs",
   "type": "module",
   "scripts": {
     "test": "node ./node_modules/.bin/jest",
     "test:coverage": "npm test -- --coverage",
     "test:watch": "npm test -- --watch",
-    "new:day": "node ./src/_lib/new-day.js"
+    "new:day": "node ./src/_lib/new-day.mjs"
   },
   "repository": {
     "type": "git",

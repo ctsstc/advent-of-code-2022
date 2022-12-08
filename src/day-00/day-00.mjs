@@ -1,4 +1,4 @@
-import Problem from '../_lib/problem.js'
+import Problem from '../_lib/problem.mjs'
 
 class Day00 extends Problem {
   constructor(inputFileName) {
