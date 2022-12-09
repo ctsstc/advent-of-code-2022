@@ -22,11 +22,11 @@ describe('Day 01', () => {
     const problem = new Problem(__dirname + '/input.txt')
 
     it('solves part 1', () => {
-      expect(problem.solvePart1()).toBe(71023)
+      expect(problem.solvePart1()).toBe(70374)
     })
 
     it('solves part 2', () => {
-      expect(problem.solvePart2()).toBe(206289)
+      expect(problem.solvePart2()).toBe(204610)
     })
   })
 })
