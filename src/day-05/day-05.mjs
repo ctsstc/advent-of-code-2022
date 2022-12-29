@@ -10,7 +10,7 @@ class Day05 extends Problem {
   }
 
   solvePart2() {
-    
+    return this.get_answer_2()
   }
 
   // Init/Helpers
@@ -83,23 +83,25 @@ class Day05 extends Problem {
 
   // slice the lines after the empty line
   get_raw_state_of_moves() {
-    const moves  = this.lines.slice(this.get_empty_line_index() + 1, this.lines.length)
+    const moves = this.lines.slice(
+      this.get_empty_line_index() + 1,
+      this.lines.length,
+    )
     // console.log({ moves })
     return moves
 
-      // number of iterations we gotta go through when moving crates, only so far works with single digits, maybe we can turn move into a list
-      // from the list of characters, we take out the empty spaces, we find the index of "e" from (move)
-      // then we do a slice starting at indexOf("e")+1, to indexOf("f") = set this up as a const crate_movement
-      // then do another slice starting at indexOf("m")+1, to indexOf("t") = set this up as a const from_index
-      // then do another slice starting at indexOf("o")+1, to move.length = set this up as a const to_index
+    // number of iterations we gotta go through when moving crates, only so far works with single digits, maybe we can turn move into a list
+    // from the list of characters, we take out the empty spaces, we find the index of "e" from (move)
+    // then we do a slice starting at indexOf("e")+1, to indexOf("f") = set this up as a const crate_movement
+    // then do another slice starting at indexOf("m")+1, to indexOf("t") = set this up as a const from_index
+    // then do another slice starting at indexOf("o")+1, to move.length = set this up as a const to_index
 
     // for (let move of moves) {
     //   console.log(move)
-      // const crates_to_move = move.slice(4,6) 
-      // console.log(crates_to_move)
+    // const crates_to_move = move.slice(4,6)
+    // console.log(crates_to_move)
     // }
   }
-
 
   // get three values: iterations, from_index, to_index
   parse_moves() {
@@ -109,8 +111,9 @@ class Day05 extends Problem {
     const regex_matcher = /move (\d+) from (\d+) to (\d+)/
 
     return this.get_raw_state_of_moves().map((line) => {
-      const [_match, iterations, from_index, to_index] = line.match(regex_matcher)
-      
+      const [_match, iterations, from_index, to_index] =
+        line.match(regex_matcher)
+
       return {
         iterations,
         from_index: from_index - 1,
@@ -122,7 +125,7 @@ class Day05 extends Problem {
   // Moves & Boxes
 
   apply_moves() {
-    /** 
+    /**
      * VISUAL:
      *     [D]
      * [N] [C]
@@ -142,10 +145,10 @@ class Day05 extends Problem {
 
     for (let move of moves) {
       // console.log({ move })
-      const iterations = move['iterations']
-      const from_index = move['from_index']
-      const to_index = move['to_index']
-      
+      const iterations = move.iterations
+      const from_index = move.from_index
+      const to_index = move.to_index
+
       // console.log({ iterations, from_index, to_index })
       const column = boxes[from_index]
       // console.log({column})
@@ -156,7 +159,22 @@ class Day05 extends Problem {
       // like if we had: [1,2,3]
       // this is the same as push(1,2,3) instead of push([1,2,3])
       boxes[to_index].push(...moving_boxes.reverse())
+    }
 
+    return boxes
+  }
+
+  apply_moves_2() {
+    const moves = this.parse_moves()
+    const boxes = this.parsed_boxes()
+
+    for (let move of moves) {
+      const { iterations, from_index, to_index } = move
+      const column = boxes[from_index]
+      const slice_start_index = column.length - iterations
+      const moving_boxes = column.splice(slice_start_index, iterations)
+
+      boxes[to_index].push(...moving_boxes)
     }
 
     return boxes
@@ -165,10 +183,20 @@ class Day05 extends Problem {
   // Answer
 
   get_answer() {
-    const answer = this.apply_moves().map((column) => {
-      return column.at(-1)
-    }).join("")
+    const answer = this.apply_moves()
+      .map((column) => {
+        return column.at(-1)
+      })
+      .join('')
     return answer
+  }
+
+  get_answer_2() {
+    return this.apply_moves_2()
+      .map((column) => {
+        return column.at(-1)
+      })
+      .join('')
   }
 }
 

@@ -13,9 +13,9 @@ describe('Day 05', () => {
       expect(problem.solvePart1()).toBe('CMZ')
     })
 
-    // it('solves part 2', () => {
-    //   expect(problem.solvePart2()).toBe(123)
-    // })
+    it('solves part 2', () => {
+      expect(problem.solvePart2()).toBe('MCD')
+    })
 
     it('parses the boxes state', () => {
       expect(problem.parsed_boxes()).toEqual([
@@ -41,8 +41,8 @@ describe('Day 05', () => {
       expect(problem.solvePart1()).toBe('TPGVQPFDH')
     })
 
-    // it('solves part 2', () => {
-    //   expect(problem.solvePart2()).toBe(456789)
-    // })
+    it('solves part 2', () => {
+      expect(problem.solvePart2()).toBe('DMRDFRHHH')
+    })
   })
 })
