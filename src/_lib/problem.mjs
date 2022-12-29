@@ -20,7 +20,7 @@ class Problem {
   }
 
   #readLines() {
-    return readFileSync(this.#fileName, 'utf8').split('\n')
+    return readFileSync(this.#fileName, 'utf8').split('\n').map((line) => line.replace(/[\n\r]+/g, ''))
   }
 
   #getLinesAsInts() {
