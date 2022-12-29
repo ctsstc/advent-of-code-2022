@@ -9,7 +9,7 @@ describe('Day 00', () => {
   describe('example.txt', () => {
     const problem = new Problem(__dirname + '/example.txt')
 
-    xit('solves part 1', () => {
+    it('solves part 1', () => {
       expect(problem.solvePart1()).toBe('1')
     })
 
