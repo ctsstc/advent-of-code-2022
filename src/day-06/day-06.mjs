@@ -11,7 +11,6 @@ class Day06 extends Problem {
       // console.log({characters})
       const set_of_characters = new Set(characters)
       if (set_of_characters.size == 4) {
-
         return i + 4
       }
     }
@@ -24,7 +23,6 @@ class Day06 extends Problem {
       // console.log({characters})
       const set_of_characters = new Set(characters)
       if (set_of_characters.size == 14) {
-
         return i + 14
       }
     }
