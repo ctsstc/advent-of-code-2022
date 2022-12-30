@@ -6,24 +6,30 @@ class Day06 extends Problem {
   }
   
   solvePart1() {
-    for (let i = 0; i < this.lines[0].length - 4 ; i++ ){
-      const characters = this.lines[0].substring(i, i + 4)
+    const firstLine = this.lines[0]
+    const stringLength = 4
+
+    for (let i = 0; i < firstLine.length - stringLength ; i++ ){
+      const characters = firstLine.substring(i, i + stringLength)
       // console.log({characters})
       const set_of_characters = new Set(characters)
-      if (set_of_characters.size == 4) {
-        return i + 4
+      if (set_of_characters.size == stringLength) {
+        return i + stringLength
       }
     }
     return "UwU; you shouldn't be here"
   }
 
   solvePart2() {
-    for (let i = 0; i < this.lines[0].length - 14 ; i++ ){
-      const characters = this.lines[0].substring(i, i + 14)
+    const first_line = this.lines[0]
+    const string_length = 14
+
+    for (let i = 0; i < first_line.length - string_length; i++) {
+      const characters = first_line.substring(i, i + string_length)
       // console.log({characters})
       const set_of_characters = new Set(characters)
-      if (set_of_characters.size == 14) {
-        return i + 14
+      if (set_of_characters.size == string_length) {
+        return i + string_length
       }
     }
     return "UwU; you shouldn't be here"
