@@ -7,10 +7,36 @@ class Day07 extends Problem {
 
   constructor(inputFileName) {
     super(inputFileName)
+
+    this.buildFileState()
   }
 
   solvePart1() {
-    // build out our state of files and directories
+    // get the directories and their sizes
+    const directories = this.getDirectories()
+    const directoriesAndSizes = this.getDirectoriesSize(directories)
+    const directorySizes = Array.from(directoriesAndSizes.values())
+    const directorySizesUnder100K = directorySizes.filter(
+      (size) => size < 100000,
+    )
+    return directorySizesUnder100K.reduce((acc, size) => acc + size, 0)
+  }
+
+  solvePart2() {
+    const directories = this.getDirectories()
+    const directoriesAndSizes = this.getDirectoriesSize(directories)
+    const directorySizes = Array.from(directoriesAndSizes.values())
+    const rootSize = directoriesAndSizes.get('/')
+    const diskSpaceLeft = 70000000 - rootSize
+    const spaceRequired = 30000000 - diskSpaceLeft
+    const directoriesOver30m = directorySizes.filter(
+      (size) => size >= spaceRequired,
+    )
+
+    return Math.min(...directoriesOver30m)
+  }
+
+  buildFileState() {
     this.lines.forEach((line) => {
       if (this.isCommand(line)) {
         const fullCommand = this.parseCommand(line)
@@ -43,20 +69,6 @@ class Day07 extends Problem {
         this.storeFile(file)
       }
     })
-
-    console.log({ FILES: this.#files })
-    // get the directories and their sizes
-    const directories = this.getDirectories()
-    const directoriesAndSizes = this.getDirectoriesSize(directories)
-    const directorySizes = Array.from(directoriesAndSizes.values())
-    const directorySizesUnder100K = directorySizes.filter(
-      (size) => size < 100000,
-    )
-    return directorySizesUnder100K.reduce((acc, size) => acc + size, 0)
-  }
-
-  solvePart2() {
-    return parseInt(this.solvePart1())
   }
 
   /**
@@ -146,7 +158,6 @@ class Day07 extends Problem {
    */
   getDirectories() {
     const keys = Array.from(this.#files.keys())
-    console.log('KEEEYYYYYSSS', keys)
     return keys.filter((key) => this.#files.get(key) === null)
   }
 
