@@ -10,7 +10,7 @@ describe('Day 07', () => {
     const problem = new Problem(__dirname + '/example.txt')
     // remember to take out xit and change it to it
     it('solves part 1', () => {
-      expect(problem.solvePart1()).toBe('UwU')
+      expect(problem.solvePart1()).toBe(95437)
     })
 
     // it('solves part 2', () => {
@@ -21,9 +21,9 @@ describe('Day 07', () => {
   describe('input.txt', () => {
     const problem = new Problem(__dirname + '/input.txt')
 
-    // it('solves part 1', () => {
-    //   expect(problem.solvePart1()).toBe('456789')
-    // })
+    it('solves part 1', () => {
+      expect(problem.solvePart1()).toBe(1307902)
+    })
 
     // it('solves part 2', () => {
     //   expect(problem.solvePart2()).toBe(456789)
