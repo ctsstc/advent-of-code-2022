@@ -8,7 +8,7 @@ class Day07 extends Problem {
   solvePart1() {
     return "UwU"
     // this.lines.reduce((sb, line) => sb + line, '') 
-    //$ is a command
+    // $ is a command
     //
 
   }
