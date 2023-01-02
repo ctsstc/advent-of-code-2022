@@ -22,7 +22,7 @@ for x in range(width):
         # print(grid[y, :x])
         # print(grid[y, (x+1):])
         # print(grid[:y, x])
-        print(grid[(y+1):, x])
+        # print(grid[(y+1):, x])
         if x == 0 or np.amax(grid[y, :x]) < position:
             ans += 1
 
