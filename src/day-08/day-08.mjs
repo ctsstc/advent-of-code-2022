@@ -22,6 +22,10 @@ class Day08 extends Problem {
     return this.visibleTrees.size
   }
 
+  solvePart2() {
+    return this.getHighestTreeScore()
+  }
+
   /**
    * @returns {Array<Array<number>>}
    */
@@ -38,6 +42,7 @@ class Day08 extends Problem {
     return grid
   }
 
+  // Part 1
   checkFromTheTop() {
     for (let x = 0; x < this.#gridWidth; x++) {
       for (let y = 0; y < this.#gridHeight; y++) {
@@ -166,6 +171,70 @@ class Day08 extends Problem {
         }
       }
     }
+  }
+
+  // Part 2
+
+  getTreeScore(x, y) {
+    const currentTree = this.#grid[y][x]
+
+    const treeLineUp = this.#grid
+      .slice(0, y)
+      .reverse()
+      .map((row) => row[x])
+    const treeLineRight = this.#grid[y].slice(x + 1)
+    const treeLineDown = this.#grid.slice(y + 1).map((row) => row[x])
+    const treeLineLeft = this.#grid[y].slice(0, x).reverse()
+
+    // console.log({ treeLineUp, treeLineRight, treeLineDown, treeLineLeft })
+
+    const upScore = this.getLineScore(currentTree, treeLineUp)
+    const rightScore = this.getLineScore(currentTree, treeLineRight)
+    const downScore = this.getLineScore(currentTree, treeLineDown)
+    const leftScore = this.getLineScore(currentTree, treeLineLeft)
+
+    // console.log({ upScore, rightScore, downScore, leftScore })
+
+    return upScore * rightScore * downScore * leftScore
+  }
+
+  /**
+   *
+   * @param {number} houseHeight
+   * @param {number[]} treesToCheck
+   */
+  getLineScore(houseHeight, treesToCheck) {
+    if (treesToCheck.length === 0) return 0
+
+    let visibleTreeScore = 0
+    // console.log({ treesToCheck })
+    for (let i = 0; i < treesToCheck.length; i++) {
+      const currentTree = treesToCheck[i]
+
+      if (currentTree >= houseHeight) {
+        visibleTreeScore++
+        break
+      }
+
+      visibleTreeScore++
+    }
+
+    return visibleTreeScore
+  }
+
+  getHighestTreeScore() {
+    let highScore = 0
+
+    this.#grid.forEach((row, y) => {
+      row.forEach((_treeValue, x) => {
+        const score = this.getTreeScore(x, y)
+        if (score > highScore) {
+          highScore = score
+        }
+      })
+    })
+
+    return highScore
   }
 }
 
