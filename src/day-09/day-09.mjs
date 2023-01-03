@@ -93,7 +93,7 @@ class Day09 extends Problem {
     for (let i = 0; i < this.lines.length; i++) {
       const [direction, moves] = this.lines[i].split(' ')
 
-      console.log({ direction, moves })
+      // console.log({ direction, moves })
 
       for (let move = 0; move < moves; move++) {
         if (direction == 'U') {
@@ -113,7 +113,7 @@ class Day09 extends Problem {
         }
       }
 
-      printSnake(parts)
+      // printSnake(parts)
     }
 
     // console.log("Tail locations: ", tailLocations)
@@ -138,7 +138,7 @@ class Day09 extends Problem {
 
       /** When a diagonal occurs vertically
        * .H
-       * ..
+       * .x
        * T.
        */
       if (yDifference == 2) {
@@ -147,7 +147,7 @@ class Day09 extends Problem {
         newY--
       }
 
-      if (Math.abs(yDifference == 2)) {
+      if (Math.abs(yDifference) == 2) {
         if (xDifference == 1) {
           newX++
         } else if (xDifference == -1) {
@@ -162,7 +162,7 @@ class Day09 extends Problem {
         newX--
       }
 
-      if (Math.abs(xDifference == 2)) {
+      if (Math.abs(xDifference) == 2) {
         if (yDifference == 1) {
           newY++
         } else if (yDifference == -1) {

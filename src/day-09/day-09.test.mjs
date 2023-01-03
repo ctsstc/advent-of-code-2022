@@ -23,7 +23,7 @@ describe('Day 09', () => {
        * .x
        * T.
        */
-      it('moves up right', () => {
+      it('moves up from ↗️', () => {
         expect(problem.getNewPosition([1, 2], [0, 0])).toEqual([1, 1])
       })
 
@@ -35,13 +35,13 @@ describe('Day 09', () => {
        * T..
        * .xH
        */
-      it('moves down right', () => {
+      it('moves right from ↘️', () => {
         expect(problem.getNewPosition([2, 0], [1, 0])).toEqual([1, 0])
       })
 
       /**
        * T
-       * .
+       * x
        * H
        */
       it('moves down', () => {
@@ -50,11 +50,11 @@ describe('Day 09', () => {
 
       /**
        * .T
-       * .x
+       * x.
        * H.
        */
-      it('moves down left', () => {
-        expect(problem.getNewPosition([0, 0], [1, 2])).toEqual([1, 1])
+      it('moves down from ↙️', () => {
+        expect(problem.getNewPosition([0, 0], [1, 2])).toEqual([0, 1])
       });
 
       it('moves left', () => {
@@ -68,6 +68,14 @@ describe('Day 09', () => {
        */
       it('moves up left', () => {
         expect(problem.getNewPosition([0, 2], [1, 0])).toEqual([0, 1])
+      })
+
+      /**
+       * Hx.
+       * ..T
+       */
+      it('moves up left from ↖️', () => {
+        expect(problem.getNewPosition([0, 1], [2, 0])).toEqual([1, 1])
       })
 
       /** 
@@ -89,11 +97,11 @@ describe('Day 09', () => {
     const problem = new Problem(__dirname + '/input.txt')
 
     it('solves part 1', () => {
-      expect(problem.solvePart1()).toBe(5878)
+      expect(problem.solvePart1()).toBe(6745)
     })
 
-    it.only('solves part 2', () => {
-      expect(problem.solvePart2()).toBe(36)
+    it('solves part 2', () => {
+      expect(problem.solvePart2()).toBe(2793)
     })
   })
 })
