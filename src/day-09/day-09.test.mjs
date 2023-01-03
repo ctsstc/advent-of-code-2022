@@ -13,9 +13,67 @@ describe('Day 09', () => {
       expect(problem.solvePart1()).toBe(13)
     })
 
-    // it('solves part 2', () => {
-    //   expect(problem.solvePart2()).toBe(123)
-    // })
+    describe('#getNewPosition', () => {
+      it('moves up', () => {
+        expect(problem.getNewPosition([0, 2], [0, 0])).toEqual([0, 1])
+      })
+
+      /**
+       * .H
+       * .x
+       * T.
+       */
+      it('moves up right', () => {
+        expect(problem.getNewPosition([1, 2], [0, 0])).toEqual([1, 1])
+      })
+
+      it('moves right', () => {
+        expect(problem.getNewPosition([2, 0], [0, 0])).toEqual([1, 0])
+      })
+
+      /**
+       * T..
+       * .xH
+       */
+      it('moves down right', () => {
+        expect(problem.getNewPosition([2, 0], [1, 0])).toEqual([1, 0])
+      })
+
+      /**
+       * T
+       * .
+       * H
+       */
+      it('moves down', () => {
+        expect(problem.getNewPosition([0, -2], [0, 0])).toEqual([0, -1])
+      })
+
+      /**
+       * .T
+       * .x
+       * H.
+       */
+      it('moves down left', () => {
+        expect(problem.getNewPosition([0, 0], [1, 2])).toEqual([1, 1])
+      });
+
+      it('moves left', () => {
+        expect(problem.getNewPosition([-2, 0], [0, 0])).toEqual([-1, 0])
+      })
+
+      /**
+       * H.
+       * x.
+       * .T
+       */
+      it('moves up left', () => {
+        expect(problem.getNewPosition([0, 2], [1, 0])).toEqual([0, 1])
+      })
+    })
+
+    it('solves part 2', () => {
+      expect(problem.solvePart2()).toBe(1)
+    })
   })
 
   describe('input.txt', () => {
@@ -25,8 +83,8 @@ describe('Day 09', () => {
       expect(problem.solvePart1()).toBe(5878)
     })
 
-    // it('solves part 2', () => {
-    //   expect(problem.solvePart2()).toBe(456789)
-    // })
+    it.only('solves part 2', () => {
+      expect(problem.solvePart2()).toBe(36)
+    })
   })
 })
