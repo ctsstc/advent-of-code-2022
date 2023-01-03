@@ -84,10 +84,6 @@ class Day09 extends Problem {
         const currentPart = parts[i]
         const newPosition = this.getNewPosition(previousPart, currentPart)
 
-        if (i == partLength - 1) {
-          console.log("TAIL UPDATE TIME!!!  ", { previousPart, currentPart, newPosition } )
-        }
-
         parts[i] = newPosition
       }
 
@@ -97,7 +93,7 @@ class Day09 extends Problem {
     for (let i = 0; i < this.lines.length; i++) {
       const [direction, moves] = this.lines[i].split(' ')
 
-      console.log("MOVES", moves)
+      console.log({ direction, moves })
 
       for (let move = 0; move < moves; move++) {
         if (direction == 'U') {
@@ -117,9 +113,10 @@ class Day09 extends Problem {
         }
       }
 
-      console.log('UPDATTEEEDDDD!!! ')
-      console.log({ tailLocations })
+      printSnake(parts)
     }
+
+    // console.log("Tail locations: ", tailLocations)
 
     return tailLocations.size
   }
@@ -151,9 +148,9 @@ class Day09 extends Problem {
       }
 
       if (Math.abs(yDifference == 2)) {
-        if (xDifference > 0) {
+        if (xDifference == 1) {
           newX++
-        } else if (xDifference < 0) {
+        } else if (xDifference == -1) {
           newX--
         }
       }
@@ -166,9 +163,9 @@ class Day09 extends Problem {
       }
 
       if (Math.abs(xDifference == 2)) {
-        if (yDifference > 0) {
+        if (yDifference == 1) {
           newY++
-        } else if (yDifference < 0) {
+        } else if (yDifference == -1) {
           newY--
         }
       }
@@ -176,6 +173,29 @@ class Day09 extends Problem {
 
     return [newX, newY]
   }
+}
+
+function printSnake(parts) {
+  const xEs = parts.map(([x]) => x)
+  const yEs = parts.map(([_x, y]) => y)
+
+  const minX = Math.min(...xEs)
+  const maxX = Math.max(...xEs)
+  const minY = Math.min(...yEs)
+  const maxY = Math.max(...yEs)
+
+  const grid = Array.from(Array(maxY - minY + 1), () =>
+    Array.from(Array(maxX - minX + 1), () => '.'),
+  )
+
+  for (let i = 0; i < parts.length; i++) {
+    const [x, y] = parts[i]
+    const xOffset = x - minX
+    const yOffset = maxY - y
+    grid[yOffset][xOffset] = i
+  }
+
+  console.table(grid)
 }
 
 export default Day09

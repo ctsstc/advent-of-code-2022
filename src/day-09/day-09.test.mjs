@@ -69,6 +69,15 @@ describe('Day 09', () => {
       it('moves up left', () => {
         expect(problem.getNewPosition([0, 2], [1, 0])).toEqual([0, 1])
       })
+
+      /** 
+       * ..B
+       * .x.
+       * T..
+       */
+      it('moves BIGLY up right', () => {
+        expect(problem.getNewPosition([2, 2], [0, 0])).toEqual([1, 1])
+      })
     })
 
     it('solves part 2', () => {
