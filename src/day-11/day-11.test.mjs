@@ -14,7 +14,7 @@ describe('Day 11', () => {
       expect(problem.solvePart1()).toBe(10605)
     })
 
-    it.only('solves part 2', () => { 
+    it('solves part 2', () => {
       expect(problem.solvePart2()).toBe(2713310158)
     })
   })
@@ -26,8 +26,8 @@ describe('Day 11', () => {
       expect(problem.solvePart1()).toBe(112815)
     })
 
-    // it('solves part 2', () => {
-    //   expect(problem.solvePart2()).toBe(456789)
-    // })
+    it('solves part 2', () => {
+      expect(problem.solvePart2()).toBe(456789)
+    })
   })
 })

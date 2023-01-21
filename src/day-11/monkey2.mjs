@@ -3,6 +3,7 @@ export default class Monkey2 {
   items = []
   #operation
   #test
+  test_divisional_number
   #test_true_monkey
   #test_false_monkey
   items_inspected = 0
@@ -36,6 +37,7 @@ export default class Monkey2 {
     items,
     operation,
     test,
+    test_divisional_number,
     test_true_monkey,
     test_false_monkey,
     monkey_collection,
@@ -43,20 +45,38 @@ export default class Monkey2 {
     this.items = items
     this.#operation = operation
     this.#test = test
+    this.test_divisional_number = test_divisional_number
     this.#test_true_monkey = test_true_monkey
     this.#test_false_monkey = test_false_monkey
     this.#monkey_collection = monkey_collection
   }
 
-  inspect_items() {
+  inspect_items(magicNumber) {
     this.items.forEach((item) => {
-      this.inspect_item(item)
+      this.inspect_item(item, magicNumber)
     })
     this.items = []
   }
 
-  inspect_item(item) {
-    const new_worry_value = this.#operation(item)
+  /*
+   function inspectItems(monkey, monkeys, applyRelief = true) {
+    let allDivisorsModulo = monkeys
+      .map(monkey => monkey.test.isDivisibleBy)
+      .reduce((modulo, divisor) => modulo * divisor, 1);
+  
+    monkey.itemsInspected += monkey.itemWorryLevelList.length;
+    monkey.itemWorryLevelList = monkey.itemWorryLevelList
+      .map(itemWorryLevel => {
+        let newItemWorryLevel = evaluateMonkeyOperation(monkey.operation, itemWorryLevel);
+        return applyRelief ? reliefItem(newItemWorryLevel) : newItemWorryLevel % allDivisorsModulo
+      });
+  
+    return monkey;
+  }
+  */
+
+  inspect_item(item, magicNumber) {
+    const new_worry_value = this.#operation(item) % magicNumber
     const test_outcome = this.#test(new_worry_value)
     const monkey_to_pass_to = test_outcome
       ? this.#test_true_monkey

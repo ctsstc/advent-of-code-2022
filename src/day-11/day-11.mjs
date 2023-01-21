@@ -166,11 +166,15 @@ class Day11 extends Problem {
       items,
       operation,
       test,
+      test_divisional_number,
       test_true_monkey,
       test_false_monkey,
     }
   }
 
+  /**
+   * @return {Monkey2[]}
+   */
   getMonkeyCollection() {
     // create a parser
     const number_of_monkeys = (this.lines.length + 1) / lines_in_monkey
@@ -188,14 +192,23 @@ class Day11 extends Problem {
     return monkey_collection
   }
 
+  /**
+   *
+   *
+   * @param {Monkey2[]} monkeyCollection
+   */
   throwingMonkeyBusiness(monkeyCollection) {
     // return the number of inspected items per monkey over 20 rounds
     // each monkey will have items list, operation, test => actions (a,b)
     // per round, count how many items at beginning of round as an acc for each round number per monkey?
 
-    for (let i = 0; i < 20; i++) {
+    const magicNumber = monkeyCollection.reduce((multiple, monkey) => {
+      return multiple * monkey.test_divisional_number
+    }, 1)
+
+    for (let i = 0; i < 10000; i++) {
       monkeyCollection.forEach((monkey) => {
-        monkey.inspect_items()
+        monkey.inspect_items(magicNumber)
       })
     }
   }
@@ -214,7 +227,7 @@ class Day11 extends Problem {
     const monkeyCollection = this.getMonkeyCollection()
 
     this.throwingMonkeyBusiness(monkeyCollection)
-    console.dir({ monkeyCollection }, { depth: null })
+    // console.dir({ monkeyCollection }, { depth: null })
 
     const sortedMonkeys = this.sortMonkeyCollection(monkeyCollection)
 
