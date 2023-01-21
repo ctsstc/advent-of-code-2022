@@ -32,14 +32,14 @@ export default class Monkey2 {
    * @param {number} test_false_monkey
    * @param {Monkey[]} monkey_collection array of Monkey
    */
-  constructor(
+  constructor({
     items,
     operation,
     test,
     test_true_monkey,
     test_false_monkey,
     monkey_collection,
-  ) {
+  }) {
     this.items = items
     this.#operation = operation
     this.#test = test
@@ -61,7 +61,7 @@ export default class Monkey2 {
     const monkey_to_pass_to = test_outcome
       ? this.#test_true_monkey
       : this.#test_false_monkey
-    
+
     this.pass_to_monkey(new_worry_value, monkey_to_pass_to)
     this.items_inspected++
   }
